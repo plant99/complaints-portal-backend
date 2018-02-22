@@ -12,10 +12,15 @@ class ComplaintController extends Controller
     {
         if ($request->session()->has('user_id')) {
             
-            $complaints = DB::select('SELECT * FROM complaints');
-            $json_complaints = json_encode($complaints);
-            
-            return response($json_complaints, 200);
+            if ($request->session()->get('is_admin')) {
+                $complaints = DB::select('SELECT * FROM complaints');
+                $json_complaints = json_encode($complaints); 
+                return response($json_complaints, 200);
+            }
+
+            else {
+                return response('Not Authorized', 403);
+            }
         }
         else {
             return response('Please Log In', 403);
@@ -42,33 +47,39 @@ class ComplaintController extends Controller
     {
         if ($request->session()->has('user_id')) {
             
-            $complaint_id = $request->input('complaint_id');
-            $complaint_status = $request->input('complaint_status'); 
-            $updated_at_time = Carbon::now();
+            if ($request->session()->get('is_admin')) {
+                $complaint_id = $request->input('complaint_id');
+                $complaint_status = $request->input('complaint_status'); 
+                $updated_at_time = Carbon::now();
 
-            if (!isset($complaint_id) || !isset($complaint_status)) {
-                return response('Invalid Params', 400);
-            }
+                if (!isset($complaint_id) || !isset($complaint_status)) {
+                    return response('Invalid Params', 400);
+                }
             
-            else {
-                $exists = DB::table('complaints')
-                    ->where('id', $complaint_id)
-                    ->first();
-
-                if (!$exists) {
-                    return response('Complaint Does Not Exist', 404);
-                }
-                
                 else {
-                    DB::table('complaints')
-                        ->where('id',$complaint_id)
-                        ->update([
-                            'status' => $complaint_status,
-                            'updated_at' => $updated_at_time
-                        ]);
+                    $exists = DB::table('complaints')
+                        ->where('id', $complaint_id)
+                        ->first();
+
+                    if (!$exists) {
+                        return response('Complaint Does Not Exist', 404);
+                    }
+
+                    else {
+                        DB::table('complaints')
+                            ->where('id',$complaint_id)
+                            ->update([
+                                'status' => $complaint_status,
+                                'updated_at' => $updated_at_time
+                            ]);
                  
-                    return response('Successfully Updated', 200);
+                        return response('Successfully Updated', 200);
+                    }
                 }
+            }
+
+            else {
+                return response('Not Authorized', 403);    
             }
         }
 
@@ -109,13 +120,18 @@ class ComplaintController extends Controller
     {
         if ($request->session()->has('user_id')) {
 
-            $status = $request->input('status');
-            $complaints = DB::table('complaints')
-                ->where(['status' => $status])
-                ->get();
-            $json_complaints = json_encode($complaints);
+            if ($request->session()->get('is_admin')) {
+                $status = $request->input('status');
+                $complaints = DB::table('complaints')
+                    ->where(['status' => $status])
+                    ->get();
+                $json_complaints = json_encode($complaints);
 
-            return response($json_complaints, 200);
+                return response($json_complaints, 200);
+            }
+            else {
+                return response('Not Authorized', 403);    
+            }
         }
 
         else {
