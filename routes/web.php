@@ -10,6 +10,19 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/login', 'RedirectController@LoginRedirect');
+
+Route::get('/dashboard', 'RedirectController@DashboardRedirect');
+
+Route::get('/ticket', 'RedirectController@TicketRedirect');
+
+Route::post('/user_login', 'LoginController@userAuthenticate');
+
+Route::get('/user_login', 'LoginController@checkUserAuthenticate');
+
+Route::get('/user_logout', 'LoginController@userLogout');
+
 Route::get('/get_all_complaints', 'ComplaintController@fetchAllComplaints');
 
 Route::get('/get_user_complaints', 'ComplaintController@fetchUserComplaints');
@@ -19,9 +32,3 @@ Route::post('/get_status_complaints', 'ComplaintController@fetchComplaintsFilter
 Route::post('/update_complaint_status', 'ComplaintController@updateComplaintStatus');
 
 Route::post('/create_complaint', 'ComplaintController@createComplaint');
-
-Route::post('/user_login', 'LoginController@userAuthenticate');
-
-Route::get('/user_logout', 'LoginController@userLogout');
-
-Route::get('/user_login', 'LoginController@checkUserAuthenticate');

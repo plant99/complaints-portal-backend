@@ -8,7 +8,7 @@ use Carbon;
 
 class ComplaintController extends Controller
 {
-    public function fetchAllComplaints(Request $request)
+    public static function fetchAllComplaints(Request $request)
     {
         if ($request->session()->has('user_id')) {
             
@@ -95,15 +95,15 @@ class ComplaintController extends Controller
             $user_id = session('user_id');
             $title = $request->input('title');
             $content = $request->input('content');
-            $createad_at_time = Carbon::now();
+            $created_at_time = Carbon::now();
 
             if (isset($title) && isset($title) && isset($content)) {
                 DB::table('complaints')->insert([
                     'username' => $user_id,
                     'title' => $request->input('title'),
                     'content' => $request->input('content'),
-                    'created_at' => $createad_at_time,
-                    'updated_at' => $createad_at_time,
+                    'created_at' => $created_at_time,
+                    'updated_at' => $created_at_time,
                     'status' => 'Registered'
                 ]);
 

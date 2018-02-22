@@ -11,12 +11,11 @@ class LoginController extends Controller
     public function userAuthenticate(Request $request)
     {
         if ($request->session()->has('user_id')) {
-            return response('Already Logged In', 200);
+            return redirect('/home');
         }
 
         $username = $request->input('username');
         $password = $request->input('password');
-
         if (!isset($username) || !isset($password)) {
             return response('Pass Proper Params', 400);
         }
@@ -29,18 +28,19 @@ class LoginController extends Controller
 
             $request->session()->put('is_admin',$is_admin);            
             $request->session()->put('user_id',$username);
-
-            $response->message = 'Logged In';
-            $response->is_admin = $is_admin;
+            $response = (object)[
+                'message' => 'Logged In',
+                'is_admin' => $is_admin
+            ];
             $json_response = json_encode($response);
 
-            return response($response, 200);
+            return redirect('/home');
         }
         
         else
         {
-            $request->session()->flush();       
-            return response('Invalid Credentials', 403);
+            $request->session()->flush();
+            return view('login');
         }
     }
 
