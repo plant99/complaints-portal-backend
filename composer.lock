@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b8beeb9df318a2135d813c21ab471efe",
-    "content-hash": "f702bae52c566cafff81382ba771b74e",
+    "hash": "3ebad07afbc78f30e391f4c89d233fd4",
+    "content-hash": "5bf5858f0384ec8f9754202eb4b5790a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -316,6 +316,46 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15 17:19:42"
+        },
+        {
+            "name": "gokulsrinivas/sangria",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GokulSrinivas/Sangria.git",
+                "reference": "e69076655da30ef74b9b6f4a7b7317b3d37d5710"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GokulSrinivas/Sangria/zipball/e69076655da30ef74b9b6f4a7b7317b3d37d5710",
+                "reference": "e69076655da30ef74b9b6f4a7b7317b3d37d5710",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Sangria": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Gokul Srinivas",
+                    "email": "gokusrinivas@gmail.com"
+                }
+            ],
+            "description": "A collection of useful libraries to make life easier.",
+            "keywords": [
+                "api",
+                "email",
+                "helpers",
+                "imap",
+                "json"
+            ],
+            "time": "2016-08-08 12:28:19"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2153,6 +2193,57 @@
                 "environment"
             ],
             "time": "2016-09-01 10:05:43"
+        },
+        {
+            "name": "webklex/laravel-imap",
+            "version": "1.0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Webklex/laravel-imap.git",
+                "reference": "f300c8506cfffee299683fabead19c1d9dcb99c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Webklex/laravel-imap/zipball/f300c8506cfffee299683fabead19c1d9dcb99c4",
+                "reference": "f300c8506cfffee299683fabead19c1d9dcb99c4",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.0.0",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webklex\\IMAP\\": "src/IMAP"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Malte Goldenbaum",
+                    "email": "github@webklex.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel IMAP client",
+            "homepage": "https://github.com/webklex/laravel-imap",
+            "keywords": [
+                "imap",
+                "laravel",
+                "laravel-imap",
+                "mail",
+                "webklex"
+            ],
+            "time": "2018-02-14 18:09:05"
         }
     ],
     "packages-dev": [
@@ -3834,7 +3925,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,

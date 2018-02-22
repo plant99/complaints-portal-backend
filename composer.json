@@ -8,10 +8,11 @@
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
+        "gokulsrinivas/sangria": "^1.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "symfony/console": "^3.3",
-        "talyssonoc/react-laravel": "0.11"
+        "webklex/laravel-imap": "1.0.4.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
