@@ -28,7 +28,7 @@ class ComplaintController extends Controller
             
             $user_id = session('user_id');
             
-            $user_complaints = DB::select('SELECT * FROM complaints WHERE username = $user_id');
+            $user_complaints = DB::select('SELECT * FROM complaints WHERE username = "'.$user_id.'"');
             $json_user_complaints = json_encode($user_complaints);
             
             return response($json_user_complaints, 200);
@@ -44,17 +44,31 @@ class ComplaintController extends Controller
             
             $complaint_id = $request->input('complaint_id');
             $complaint_status = $request->input('complaint_status'); 
-            
+            $updated_at_time = Carbon::now();
+
             if (!isset($complaint_id) || !isset($complaint_status)) {
                 return response('Invalid Params', 400);
             }
             
             else {
-                DB::table('complaints')
-                    ->where('id',$request->input('complaint_id'))
-                    ->update(['status' => $request->input('complaint_status')]);
+                $exists = DB::table('complaints')
+                    ->where('id', $complaint_id)
+                    ->first();
+
+                if (!$exists) {
+                    return response('Complaint Does Not Exist', 404);
+                }
                 
-                return response('Successfully Updated', 200);
+                else {
+                    DB::table('complaints')
+                        ->where('id',$complaint_id)
+                        ->update([
+                            'status' => $complaint_status,
+                            'updated_at' => $updated_at_time
+                        ]);
+                 
+                    return response('Successfully Updated', 200);
+                }
             }
         }
 

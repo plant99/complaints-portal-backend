@@ -35,8 +35,12 @@ class LoginController extends Controller
 
     public function checkUserAuthenticate(Request $request)
     {
-        $login_status = $request->session()->has('user_id');
-        return response(isset($login_status), 200);
+        if ($request->session()->has('user_id')) {
+            return response('Logged In', 200);
+        }
+        else {
+            return response('Not Logged In', 200);
+        }
     }
 
     public function userLogout(Request $request)
