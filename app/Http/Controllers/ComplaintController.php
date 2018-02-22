@@ -109,6 +109,9 @@ class ComplaintController extends Controller
 
                 return response('Complaint Registered', 200);
             }
+            else {
+                return response('Fill All Details', 400);
+            }
         }
 
         else {

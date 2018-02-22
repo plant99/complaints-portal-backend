@@ -12,8 +12,8 @@
 <div id="complaint-page">
     <form class="form row">
         <p id="toaster"></p>
-        <input name="title" type="text" placeholder="Title of the complaint"/>
-        <textarea class="col-lg-12" name="details" type="text" placeholder="Enter complaint details"></textarea>
+        <input name="title" type="text" id="title" placeholder="Title of the complaint"/>
+        <textarea class="col-lg-12" name="details" id="content" type="text" placeholder="Enter complaint details"></textarea>
         <p>&nbsp;</p>
         <button id="submit" type="submit" class="col-lg-12">Submit</button>
     </form>
@@ -21,6 +21,26 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.form.js"></script>
 <script type="text/javascript" src="js/slider.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
+<script>
+    $("#submit").click((e) => {
+        e.preventDefault();
+        var title = $("#title").val();
+        var content = $("#content").val();
+        $.ajax({
+            type: "POST",
+            url: '/create_complaint',
+            data: {
+                'title': title,
+                'content': content
+            },
+            success: function(data) {
+                console.log(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
+</script>
 </body>
 </html>

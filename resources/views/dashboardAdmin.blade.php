@@ -35,44 +35,9 @@
 
 <script type="text/javascript">
     let dummyJsonData = {
-        complaints: [
-            {
-                id: 1,
-                author: "Hey there",
-                title: "lol",
-                description: "Not bad",
-                status: "WAITING"
-            },
-            {
-                id: 2,
-                author: "Hey there",
-                title: "lol",
-                description: "Sure lorem ipsum dolor aledasojdoaiu djsdfoigayergyeiu oiufdsygiueryguie rguieyrgu  safiyasyfweytiurew yuiowh uivu sdhfgiudfsugiuerytiuteryd",
-                status: "PENDING"
-            },
-            {
-                id: 3,
-                author: "Hey there",
-                title: "lol",
-                description: "Not bad",
-                status: "RESOLVED"
-            },
-            {
-                id: 3,
-                author: "Hey there",
-                title: "lol",
-                description: "Not bad",
-                status: "RESOLVED"
-            },
-            {
-                id: 3,
-                author: "Hey there",
-                title: "lol",
-                description: "Not bad",
-                status: "RESOLVED"
-            }
-        ]
+        complaints: []
     }
+
     $('.category-filter').change(e => {
         let statusValue = $(".category-filter").val();
     if(statusValue == "all"){
@@ -90,6 +55,7 @@
     })
     renderComplaints(dummyJsonData.complaints);
     function renderComplaints(complaints){
+        console.log(complaints);
         let complaintsContainer = document.querySelector('.complaints-container');
         let complaintsContainerHTML = "";
         complaintsContainer.innerHTML = "";
@@ -132,7 +98,7 @@
 						<form class="col-lg-8" data-id="${id}" onSubmit="${changeStatus(id, status)}">
 							<h1>${title}</h1>
 							<p>
-								${details}
+								${content}
 							</p>
 							<select name="status" value="${status}"  class="status col-sm-2">
 					      <option value="waiting">waiting</option>
@@ -159,7 +125,7 @@
 			    <div class="card" data-id="${id}">
 			      <div class="card-block">
 			        <h3 class="card-title">${title}</h3>
-			        <p class="card-text">${shortDetails}</p>
+			        <p class="card-text">${content}</p>
 			        <button data-id="${id}" class="btn btn-primary modify">Modify</button>
 			      </div>
 			    </div>
@@ -168,13 +134,32 @@
         return complaintCardHtml;
     }
 
-    $.ajax({
-        type: "GET",
-        url: '/get_all_complaints',
-        success: function(data) {
-            console.log(data);
-        }
-    })
+    function loadTickets() {
+        $.ajax({
+            type: "GET",
+            url: '/get_all_complaints',
+            success: function(data) {
+                var complaints = JSON.parse(data);
+                dummyJsonData.complaints = complaints;
+            }
+        })
+    }
+
+    function loadTicketsFilter(status) {
+        $.ajax({
+            type: "POST",
+            url: '/get_status_complaints',
+            data: {
+                'status': status
+            },
+            success: function(data) {
+                var complaints = JSON.parse(data);
+                dummyJsonData.complaints = complaints;
+            }
+        })
+    }
+
+    loadTickets();
 </script>
 </body>
 </html>
