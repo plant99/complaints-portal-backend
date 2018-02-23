@@ -35,7 +35,7 @@ function renderComplaints(complaints){
 						requiredComplaint = complaints[i];
 					}
 				}
-				let modalHtml = returnModalHtml(requiredComplaint.id, requiredComplaint.title, requiredComplaint.content, requiredComplaint.status);
+				let modalHtml = returnModalHtml(requiredComplaint.id, requiredComplaint.title, requiredComplaint.content, requiredComplaint.status, requiredComplaint.url);
 				let divTBA = document.createElement('div');
 				divTBA.setAttribute('class', 'tempDIV');
 				divTBA.innerHTML = modalHtml;
@@ -58,7 +58,7 @@ function renderComplaints(complaints){
 		}
 	}
 }
-function returnModalHtml(id, title, details, status){
+function returnModalHtml(id, title, details, status, url){
 	let html = `
 		<div class="modal-custom">
 			<div class="display row">
@@ -68,6 +68,8 @@ function returnModalHtml(id, title, details, status){
 					<p class="complaint_text">
 						${details}
 					</p>
+
+				  <p>Related Link <a href="${url}">LINK</a> </p>
 					<select name="status" value="${status}"  class="status col-sm-3">
 			      <option value="WAITING">waiting</option>
 			      <option value="PROCESSING">processing</option>

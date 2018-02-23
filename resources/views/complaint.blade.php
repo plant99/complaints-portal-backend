@@ -32,13 +32,14 @@
         $("#title").val('')
         var content = $("#content").val();
         $("#content").val('');
-        $("#url").val('');
+        let url = $("#url").val();
         $.ajax({
             type: "POST",
             url: '/create_complaint',
             data: {
                 'title': title,
-                'content': content
+                'content': content,
+                'url': url
             },
             success: function(data) {
                 console.log(data);
