@@ -95,6 +95,7 @@ class ComplaintController extends Controller
             $user_id = session('user_id');
             $title = $request->input('title');
             $content = $request->input('content');
+            $url = $request->input('url');
             $created_at_time = Carbon::now();
 
             if (isset($title) && isset($title) && isset($content)) {
@@ -104,7 +105,8 @@ class ComplaintController extends Controller
                     'content' => $request->input('content'),
                     'created_at' => $created_at_time,
                     'updated_at' => $created_at_time,
-                    'status' => 'Registered'
+                    'status' => 'Registered',
+                    'url' => $url
                 ]);
 
                 return response('Complaint Registered', 200);
@@ -142,5 +144,3 @@ class ComplaintController extends Controller
         }
     }
 }
-
-
