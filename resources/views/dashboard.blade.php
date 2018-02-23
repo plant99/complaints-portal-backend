@@ -163,7 +163,6 @@
 			`;
         return complaintCardHtml;
     }
-    console.log(<?php echo ComplaintController::fetchAllComplaints(); ?>)
 </script>
 </body>
 </html>

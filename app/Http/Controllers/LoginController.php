@@ -11,7 +11,7 @@ class LoginController extends Controller
     public function userAuthenticate(Request $request)
     {
         if ($request->session()->has('user_id')) {
-            return redirect('/home');
+            return redirect('/dashboard');
         }
 
         $username = $request->input('username');
@@ -34,7 +34,7 @@ class LoginController extends Controller
             ];
             $json_response = json_encode($response);
 
-            return redirect('/home');
+            return redirect('/dashboard');
         }
         
         else
@@ -61,6 +61,6 @@ class LoginController extends Controller
     public function userLogout(Request $request)
     {
         $request->session()->flush();
-        return response('Logged Out', 200);
+        return redirect('/login');
     }
 }
