@@ -6,6 +6,9 @@
 </head>
 <body>
 <div id="login-page">
+		<div class="topbar">
+			<img src="images/header.png"/>
+		</div>
     <form class="form" method="POST" action="/user_login">
         <p id="toaster"></p>
         <input name="username" id="emailId" type="text" placeholder="email"/>

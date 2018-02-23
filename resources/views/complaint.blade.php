@@ -10,10 +10,14 @@
 </head>
 <body>
 <div id="complaint-page">
+    <div class="topbar">
+        <img src="images/header.png"/>
+    </div>
     <form class="form row">
         <p id="toaster"></p>
-        <input name="title" type="text" id="title" placeholder="Title of the complaint"/>
-        <textarea class="col-lg-12" name="details" id="content" type="text" placeholder="Enter complaint details"></textarea>
+        <input name="title" type="text" id="title" placeholder="Title of the change required"/>
+        <input name="linked_url" id="url" type="text" placeholder="Linked URL"/>
+        <textarea class="col-lg-12" id="content" name="details" type="text" placeholder="Enter details of the update"></textarea>
         <p>&nbsp;</p>
         <button id="submit" type="submit" class="col-lg-12">Submit</button>
     </form>
@@ -25,7 +29,10 @@
     $("#submit").click((e) => {
         e.preventDefault();
         var title = $("#title").val();
+        $("#title").val('')
         var content = $("#content").val();
+        $("#content").val('');
+        $("#url").val('');
         $.ajax({
             type: "POST",
             url: '/create_complaint',

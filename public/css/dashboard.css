@@ -7,23 +7,20 @@
 .category-filter{
 	height: 50px;
 }
-.topbar{
-	background-color: cyan;
-	height: 80px;
-	padding:20px;
-}
 body {
   font-family: "Roboto", sans-serif;
+  background-color: #fff;
 }
 .modal-custom{
 	z-index: 100;
 	position: fixed;
 	top:0px;
-	left: 0px;
-	width:100vw;
-	height:100vh;
+	left:15vw;
+
+	width: 70vw;
+	overflow-x: none;
 	text-align: center;
-	background-color: grey;
+	background-color: #fff;
 	overflow-y: auto;
 }
 .modal-custom .btn{
@@ -31,4 +28,34 @@ body {
 }
 form{
 	padding: 4vh;
+}
+.complaint-text{
+	height: 100px;
+	width: 100%;
+	resize: none;
+	overflow-y: auto;
+	border-radius: 5px;
+	text-decoration: none;
+	border: none;
+	background-color: transparent;
+}
+.s_waiting{
+	background-color: #f2f778;
+}
+.s_processing{
+	background-color: #f7d078;
+}
+.s_resolved{
+	background-color: #78f79a;
+}
+.topbar{
+	height: 200px;
+	color: white;
+	background-color: #17628e;
+}
+.topbar label{
+	font-size: 27px;
+}
+.modify{
+	background-color: #17628e;
 }
